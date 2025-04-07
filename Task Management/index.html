@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="task-container">
+            <div class="form">
+                <h2>Assign New Task</h2>
+                <label for="name">Name : </label>
+                <input type="text" id="name"><br>
+
+                <label for="name">Task : </label>
+                <input type="text" id="task"><br>
+
+                <label for="name">Status : </label>
+                <select name="status" id="status">
+                    <option value="Assign">Assign</option>
+                    <option value="InProgress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+
+                <button onclick="addTask()">Submit</button>
+            </div>
+        </div>
+        <div class="task-list">
+            <table id="task-items">
+                <tr>
+                    <th>Name</th>
+                    <th>Task</th>
+                    <th>Status</th>
+                </tr>
+
+
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    function addTask() {
+        let arr = [];
+        var name = document.getElementById('name').value;
+        var task = document.getElementById('task').value;
+        var status = document.getElementById('status').value;
+        var table = document.getElementById('task-items');
+        arr = [name, task, status];
+
+        var tr = document.createElement('tr');
+
+        arr.forEach(element => {
+            let th = document.createElement('td');
+            // th.textContent = element;
+            // tr.appendChild(th);
+            console.log(arr);
+            if (element == "Assign" || element == "InProgress" || element == "Completed") {
+                let select = document.createElement('select');
+
+                switch (element) {
+                    case "Assign":
+                        {
+                            let option1 = document.createElement('option');
+                            option1.textContent = "Assign";
+                            select.appendChild(option1);
+                            let option2 = document.createElement('option');
+                            option2.textContent = "InProgress";
+                            select.appendChild(option2);
+                            let option3 = document.createElement('option');
+                            option3.textContent = "Completed";
+                            select.appendChild(option3);
+                            break;
+                        }
+                        break;
+
+                    case "InProgress":
+                        {
+                            let option1 = document.createElement('option');
+                            option1.textContent = "InProgress";
+                            select.appendChild(option1);
+                            let option2 = document.createElement('option');
+                            option2.textContent = "Assign";
+                            select.appendChild(option2);
+                            let option3 = document.createElement('option');
+                            option3.textContent = "Completed";
+                            select.appendChild(option3);
+                            break;
+                        }
+                    case "Completed":
+                        {
+                        let option1 = document.createElement('option');
+                        option1.textContent = "Completed";
+                        select.appendChild(option1);
+                        let option2 = document.createElement('option');
+                        option2.textContent = "Assign";
+                        select.appendChild(option2);
+                        let option3 = document.createElement('option');
+                        option3.textContent = "InProgress";
+                        select.appendChild(option3);
+
+                        break;
+                    }
+                    default:
+                        break;
+                }
+
+
+
+                tr.appendChild(select);
+            }
+            else {
+                th.textContent = element;
+                tr.appendChild(th);
+            }
+        });
+
+        table.appendChild(tr);
+
+    }
+</script>
+
+</html>
